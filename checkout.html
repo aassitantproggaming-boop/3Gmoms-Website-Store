@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - 3Grecep Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="index.html">🛒 3Grecep Store</a>
+        </div>
+        
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="index.html">🏠 Beranda</a>
+            </li>
+            <li class="nav-item">
+                <a href="products.html">📦 Produk</a>
+            </li>
+            <li class="nav-item">
+                <a href="cart.html">🛒 Keranjang (<span id="cart-count">0</span>)</a>
+            </li>
+        </ul>
+
+        <button class="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- CHECKOUT FORM -->
+    <section class="checkout-section">
+        <h1>💳 Checkout</h1>
+
+        <div class="checkout-container">
+            <!-- FORM DATA -->
+            <div class="checkout-form-container">
+                <form id="checkout-form">
+                    <h3>Data Pengiriman</h3>
+                    
+                    <div class="form-group">
+                        <label for="name">Nama Lengkap *</label>
+                        <input type="text" id="name" placeholder="Masukkan nama lengkap" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" placeholder="nama@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Nomor HP *</label>
+                        <input type="tel" id="phone" placeholder="08xxxxxxxxxx" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Alamat Lengkap *</label>
+                        <textarea id="address" placeholder="Jalan, No. Rumah, Kota, Provinsi" rows="4" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">Kota/Kabupaten *</label>
+                        <input type="text" id="city" placeholder="Masukkan kota" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="postal">Kode Pos *</label>
+                        <input type="text" id="postal" placeholder="12345" required>
+                    </div>
+
+                    <h3 style="margin-top: 30px;">Metode Pembayaran</h3>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="radio" name="payment" value="transfer" checked>
+                            💳 Transfer Bank
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="radio" name="payment" value="ewallet">
+                            📱 E-Wallet (GoPay, OVO, Dana)
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="radio" name="payment" value="cod">
+                            🚗 Bayar di Tempat (COD)
+                        </label>
+                    </div>
+
+                    <div id="error-message" class="error-message"></div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Pesan Sekarang</button>
+                </form>
+            </div>
+
+            <!-- RINGKASAN ORDER -->
+            <div class="checkout-summary">
+                <h3>Ringkasan Pesanan</h3>
+                <div id="checkout-items" class="checkout-items">
+                    <!-- Item akan ditampilkan di sini -->
+                </div>
+                
+                <hr>
+                
+                <div class="checkout-total">
+                    <div class="total-item">
+                        <span>Subtotal:</span>
+                        <span id="checkout-subtotal">Rp 0</span>
+                    </div>
+                    <div class="total-item">
+                        <span>Ongkir:</span>
+                        <span id="checkout-shipping">Rp 0</span>
+                    </div>
+                    <div class="total-item">
+                        <span>Pajak:</span>
+                        <span id="checkout-tax">Rp 0</span>
+                    </div>
+                    <div class="total-item total">
+                        <span>Total Pembayaran:</span>
+                        <span id="checkout-total">Rp 0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p class="footer-bottom">&copy; 2026 3Grecep Store.</p>
+    </footer>
+
+    <script src="main.js"></script>
+    <script src="checkout.js"></script>
+</body>
+</html>

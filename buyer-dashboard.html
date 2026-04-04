@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Pembeli - 3Grecep Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="index.html">🛒 3Grecep Store</a>
+        </div>
+        
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="index.html">🏠 Beranda</a>
+            </li>
+            <li class="nav-item">
+                <a href="products.html">📦 Produk</a>
+            </li>
+            <li class="nav-item">
+                <a href="cart.html">🛒 Keranjang (<span id="cart-count">0</span>)</a>
+            </li>
+            <li class="nav-item">
+                <a href="order-history.html">📋 Riwayat Pembelian</a>
+            </li>
+            <li class="nav-item" id="user-nav">
+                <a href="#" onclick="showUserMenu()">👤 Akun</a>
+            </li>
+        </ul>
+
+        <button class="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- USER MENU DROPDOWN -->
+    <div class="user-dropdown" id="userDropdown">
+        <a href="buyer-dashboard.html">📊 Dashboard</a>
+        <a href="#" onclick="logout()">🚪 Logout</a>
+    </div>
+
+    <!-- DASHBOARD PEMBELI -->
+    <section class="admin-container">
+        <h1>📊 Dashboard Pembeli</h1>
+
+        <!-- STATISTIK -->
+        <div class="dashboard-grid">
+            <div class="stat-card">
+                <h3>Total Pembelian</h3>
+                <div class="number" id="total-purchases">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Total Pengeluaran</h3>
+                <div class="number" id="total-spent">Rp 0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Pesanan Aktif</h3>
+                <div class="number" id="active-orders">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Pesanan Selesai</h3>
+                <div class="number" id="completed-purchases">0</div>
+            </div>
+        </div>
+
+        <!-- PROFIL PEMBELI -->
+        <div class="buyer-profile">
+            <h2>Profil Saya</h2>
+            <div class="profile-content">
+                <p><strong>Nama:</strong> <span id="profile-name"></span></p>
+                <p><strong>Email:</strong> <span id="profile-email"></span></p>
+                <p><strong>Username:</strong> <span id="profile-username"></span></p>
+                <p><strong>Nomor HP:</strong> <span id="profile-phone"></span></p>
+                <p><strong>Terdaftar:</strong> <span id="profile-date"></span></p>
+            </div>
+        </div>
+
+        <!-- TABEL PESANAN -->
+        <div class="orders-table">
+            <h2>Riwayat Pesanan Saya</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Produk</th>
+                        <th>Total</th>
+                        <th>Tanggal</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="purchases-tbody">
+                    <tr><td colspan="5" style="text-align: center; padding: 20px;">Belum ada pesanan</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p class="footer-bottom">&copy; 2026 3Grecep Store.</p>
+    </footer>
+
+    <script src="main.js"></script>
+    <script src="auth.js"></script>
+    <script src="buyer-dashboard.js"></script>
+</body>
+</html>

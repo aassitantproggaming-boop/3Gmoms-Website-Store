@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Pembelian - 3Grecep Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="index.html">🛒 3Grecep Store</a>
+        </div>
+        
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="index.html">🏠 Beranda</a>
+            </li>
+            <li class="nav-item">
+                <a href="products.html">📦 Produk</a>
+            </li>
+            <li class="nav-item">
+                <a href="cart.html">🛒 Keranjang (<span id="cart-count">0</span>)</a>
+            </li>
+            <li class="nav-item">
+                <a href="order-history.html">📋 Riwayat Pembelian</a>
+            </li>
+        </ul>
+
+        <button class="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- RIWAYAT PEMBELIAN -->
+    <section class="order-history-section">
+        <h1>📋 Riwayat Pembelian</h1>
+
+        <div id="orders-list" class="orders-list">
+            <!-- Pesanan akan ditampilkan di sini -->
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p class="footer-bottom">&copy; 2026 3Grecep Store.</p>
+    </footer>
+
+    <script src="main.js"></script>
+    <script src="order-history.js"></script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manajemen Pengguna - 3Grecep Admin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="admin-dashboard.html">📊 Admin Panel</a>
+        </div>
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="admin-dashboard.html">📊 Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a href="admin-users.html">👥 Manajemen Pengguna</a>
+            </li>
+            <li class="nav-item">
+                <a href="admin-settings.html">⚙️ Pengaturan</a>
+            </li>
+            <li class="nav-item">
+                <a href="index.html">Kembali ke Toko</a>
+            </li>
+            <li class="nav-item" id="user-nav">
+                <a href="#" onclick="showUserMenu()">👤 Akun</a>
+            </li>
+        </ul>
+
+        <button class="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- USER MENU DROPDOWN -->
+    <div class="user-dropdown" id="userDropdown">
+        <a href="#" onclick="logout()">🚪 Logout</a>
+    </div>
+
+    <!-- MANAJEMEN PENGGUNA -->
+    <section class="admin-container">
+        <h1>👥 Manajemen Pengguna</h1>
+
+        <!-- TABS -->
+        <div class="user-tabs">
+            <button class="tab-btn active" onclick="switchUserTab('buyers')">👤 Pembeli</button>
+            <button class="tab-btn" onclick="switchUserTab('sellers')">🏪 Penjual</button>
+        </div>
+
+        <!-- TAB PEMBELI -->
+        <div class="user-tab-content" id="buyers-tab">
+            <h2>Daftar Pembeli</h2>
+            <div class="users-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Nomor HP</th>
+                            <th>Terdaftar</th>
+                            <th>Total Pembelian</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="buyers-tbody">
+                        <!-- Daftar pembeli akan ditampilkan di sini -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- TAB PENJUAL -->
+        <div class="user-tab-content hidden" id="sellers-tab">
+            <h2>Daftar Penjual</h2>
+            <div class="users-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Toko</th>
+                            <th>Pemilik</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Nomor HP</th>
+                            <th>Alamat</th>
+                            <th>Terdaftar</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sellers-tbody">
+                        <!-- Daftar penjual akan ditampilkan di sini -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL DETAIL PEMBELI -->
+    <div class="modal" id="buyerDetailModal">
+        <div class="modal-content">
+            <h2>Detail Pembeli</h2>
+            
+            <div class="detail-content">
+                <p><strong>Nama:</strong> <span id="detail-buyer-name"></span></p>
+                <p><strong>Username:</strong> <span id="detail-buyer-username"></span></p>
+                <p><strong>Email:</strong> <span id="detail-buyer-email"></span></p>
+                <p><strong>Nomor HP:</strong> <span id="detail-buyer-phone"></span></p>
+                <p><strong>Terdaftar:</strong> <span id="detail-buyer-date"></span></p>
+                <p><strong>Total Pembelian:</strong> <span id="detail-buyer-orders"></span> pesanan</p>
+                <p><strong>Total Pengeluaran:</strong> <span id="detail-buyer-total"></span></p>
+            </div>
+
+            <h3>Riwayat Pembelian</h3>
+            <div id="detail-buyer-orders-list" style="max-height: 300px; overflow-y: auto; background: #f5f5f5; padding: 15px; border-radius: 5px;">
+                <!-- Riwayat pembelian akan ditampilkan di sini -->
+            </div>
+
+            <div class="modal-buttons">
+                <button class="btn btn-danger" onclick="deleteBuyer()">🗑️ Hapus Akun</button>
+                <button class="btn btn-secondary" onclick="closeBuyerDetailModal()">Tutup</button>
+            </div>
+
+            <button class="modal-close" onclick="closeBuyerDetailModal()">×</button>
+        </div>
+    </div>
+
+    <!-- MODAL DETAIL PENJUAL -->
+    <div class="modal" id="sellerDetailModal">
+        <div class="modal-content">
+            <h2>Detail Penjual</h2>
+            
+            <div class="detail-content">
+                <p><strong>Nama Toko:</strong> <span id="detail-seller-storename"></span></p>
+                <p><strong>Pemilik:</strong> <span id="detail-seller-name"></span></p>
+                <p><strong>Username:</strong> <span id="detail-seller-username"></span></p>
+                <p><strong>Email:</strong> <span id="detail-seller-email"></span></p>
+                <p><strong>Nomor HP:</strong> <span id="detail-seller-phone"></span></p>
+                <p><strong>Alamat:</strong> <span id="detail-seller-address"></span></p>
+                <p><strong>Terdaftar:</strong> <span id="detail-seller-date"></span></p>
+                <p><strong>Total Pesanan:</strong> <span id="detail-seller-orders"></span></p>
+                <p><strong>Total Penjualan:</strong> <span id="detail-seller-revenue"></span></p>
+            </div>
+
+            <div class="modal-buttons">
+                <button class="btn btn-danger" onclick="deleteSeller()">🗑️ Hapus Akun</button>
+                <button class="btn btn-secondary" onclick="closeSellerDetailModal()">Tutup</button>
+            </div>
+
+            <button class="modal-close" onclick="closeSellerDetailModal()">×</button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p class="footer-bottom">&copy; 2026 3Grecep Store.</p>
+    </footer>
+
+    <script src="main.js"></script>
+    <script src="auth.js"></script>
+    <script src="admin-users.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Data - 3Grecep Admin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="admin-dashboard.html">📊 Admin Panel</a>
+        </div>
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="admin-dashboard.html">📊 Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a href="admin-reset.html">🗑️ Reset Data</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" onclick="logout()">🚪 Logout</a>
+            </li>
+        </ul>
+    </nav>
+
+    <section class="admin-container">
+        <h1>🗑️ Reset Data</h1>
+
+        <div class="reset-cards">
+            <!-- RESET ORDERS -->
+            <div class="reset-card">
+                <h3>📋 Reset Pemesanan</h3>
+                <p>Hapus semua histori pemesanan</p>
+                <button class="btn btn-danger" onclick="resetData('orders')">
+                    Hapus Semua Pemesanan
+                </button>
+            </div>
+
+            <!-- RESET BUYERS -->
+            <div class="reset-card">
+                <h3>👤 Reset Akun Pembeli</h3>
+                <p>Hapus semua akun pembeli terdaftar</p>
+                <button class="btn btn-danger" onclick="resetData('buyers')">
+                    Hapus Semua Pembeli
+                </button>
+            </div>
+
+            <!-- RESET SELLERS -->
+            <div class="reset-card">
+                <h3>🏪 Reset Akun Penjual</h3>
+                <p>Hapus semua akun penjual terdaftar</p>
+                <button class="btn btn-danger" onclick="resetData('sellers')">
+                    Hapus Semua Penjual
+                </button>
+            </div>
+
+            <!-- RESET CART -->
+            <div class="reset-card">
+                <h3>🛒 Reset Keranjang</h3>
+                <p>Hapus semua data keranjang belanja</p>
+                <button class="btn btn-danger" onclick="resetData('cart')">
+                    Hapus Keranjang
+                </button>
+            </div>
+
+            <!-- RESET ALL -->
+            <div class="reset-card" style="grid-column: 1 / -1; background-color: #ffe6e6;">
+                <h3>⚠️ Reset Semua Data</h3>
+                <p style="color: #e74c3c; font-weight: bold;">
+                    HATI-HATI! Ini akan menghapus SEMUA data website
+                </p>
+                <button class="btn btn-danger" onclick="resetAllData()">
+                    ⚠️ Reset Semua Data
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p class="footer-bottom">&copy; 2026 3Grecep Store.</p>
+    </footer>
+
+    <script src="main.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        function resetData(type) {
+            const names = {
+                orders: 'Pemesanan',
+                buyers: 'Akun Pembeli',
+                sellers: 'Akun Penjual',
+                cart: 'Keranjang'
+            };
+
+            if (confirm(`Yakin ingin menghapus semua ${names[type]}?\nTindakan ini tidak bisa dibatalkan!`)) {
+                if (confirm('Tekan OK untuk mengkonfirmasi')) {
+                    localStorage.removeItem(type);
+                    showNotification(`✅ ${names[type]} berhasil dihapus!`);
+                    
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1500);
+                }
+            }
+        }
+
+        function resetAllData() {
+            if (confirm('⚠️ PERINGATAN SERIUS!\n\nAnda akan menghapus SEMUA data:\n- Pemesanan\n- Pembeli\n- Penjual\n- Keranjang\n\nYakin melanjutkan?')) {
+                if (confirm('Ini adalah konfirmasi terakhir. Tekan OK untuk menghapus SEMUA data!')) {
+                    localStorage.clear();
+                    showNotification('✅ Semua data berhasil dihapus! Website direset ke kondisi awal.');
+                    
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 2000);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

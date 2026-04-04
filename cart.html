@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keranjang - 3Grecep Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="index.html">🛒 3Grecep Store</a>
+        </div>
+        
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="index.html">🏠 Beranda</a>
+            </li>
+            <li class="nav-item">
+                <a href="products.html">📦 Produk</a>
+            </li>
+            <li class="nav-item">
+                <a href="cart.html">🛒 Keranjang (<span id="cart-count">0</span>)</a>
+            </li>
+            <li class="nav-item">
+                <a href="order-history.html">📋 Riwayat Pembelian</a>
+            </li>
+        </ul>
+
+        <button class="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- KERANJANG -->
+    <section class="cart-section">
+        <h1>🛒 Keranjang Belanja Anda</h1>
+
+        <div class="cart-container">
+            <!-- DAFTAR PRODUK -->
+            <div class="cart-items">
+                <div id="cart-items-list">
+                    <!-- Item akan ditampilkan di sini -->
+                </div>
+            </div>
+
+            <!-- RINGKASAN PEMBAYARAN -->
+            <div class="cart-summary">
+                <h2>Ringkasan Pesanan</h2>
+                <div class="summary-item">
+                    <span>Subtotal:</span>
+                    <span id="subtotal">Rp 0</span>
+                </div>
+                <div class="summary-item">
+                    <span>Diskon:</span>
+                    <span id="discount">Rp 0</span>
+                </div>
+                <div class="summary-item">
+                    <span>Pajak (10%):</span>
+                    <span id="tax">Rp 0</span>
+                </div>
+                <div class="summary-item">
+                    <span>Ongkir:</span>
+                    <select id="shipping-select" class="shipping-select">
+                        <option value="0">Gratis (3-5 hari)</option>
+                        <option value="15000">Rp 15.000 (Express 1 hari)</option>
+                        <option value="50000">Rp 50.000 (Same Day)</option>
+                    </select>
+                </div>
+                <div class="summary-item" id="shipping-cost">
+                    <span>Rp 0</span>
+                </div>
+                
+                <hr>
+                
+                <div class="summary-item total">
+                    <span>Total:</span>
+                    <span id="total">Rp 0</span>
+                </div>
+
+                <button class="btn btn-primary btn-block" onclick="goToCheckout()">Lanjut ke Pembayaran</button>
+                <a href="products.html" class="btn btn-secondary btn-block">Lanjut Belanja</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Tentang Kami</h4>
+                <p>Toko online terpercaya menjual makanan dan snack berkualitas</p>
+            </div>
+        </div>
+        <p class="footer-bottom">&copy; 2026 3Grecep Store. Semua hak dilindungi.</p>
+    </footer>
+
+    <script src="main.js"></script>
+    <script src="cart.js"></script>
+</body>
+</html>

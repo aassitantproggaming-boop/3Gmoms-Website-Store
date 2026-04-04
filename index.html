@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toko Online - 3Grecep</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="index.html">🛒 3Grecep Store</a>
+        </div>
+        
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="index.html">🏠 Beranda</a>
+            </li>
+            <li class="nav-item">
+                <a href="products.html">📦 Produk</a>
+            </li>
+            <li class="nav-item">
+                <a href="cart.html">🛒 Keranjang (<span id="cart-count">0</span>)</a>
+            </li>
+            <li class="nav-item">
+                <a href="order-history.html">📋 Riwayat Pembelian</a>
+            </li>
+            <li class="nav-item" id="user-nav">
+                <a href="#" onclick="showUserMenu()">👤 Akun</a>
+            </li>
+        </ul>
+
+        <button class="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- USER MENU DROPDOWN -->
+    <div class="user-dropdown" id="userDropdown">
+        <a href="#" onclick="goToDashboard()">📊 Dashboard</a>
+        <a href="#" onclick="logout()">🚪 Logout</a>
+    </div>
+
+    <!-- MODAL LOGIN/SIGNUP -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <!-- LOGIN TAB -->
+            <div class="auth-form" id="loginForm">
+                <h2>Login</h2>
+                <p class="auth-tabs">
+                    <span class="tab-btn active" onclick="switchTab('login')">Pembeli</span>
+                    <span class="tab-btn" onclick="switchTab('admin')">Admin</span>
+                </p>
+
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label>Email atau Username</label>
+                        <input type="text" id="login-email" placeholder="Masukkan email atau username" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="login-password" placeholder="Masukkan password" required>
+                    </div>
+
+                    <div id="login-error" class="error-message"></div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                </form>
+
+                <p style="text-align: center; margin-top: 15px; color: #7f8c8d;">
+                    Belum punya akun? <a href="#" onclick="switchTab('signup')">Daftar di sini</a>
+                </p>
+            </div>
+
+            <!-- ADMIN LOGIN TAB -->
+            <div class="auth-form hidden" id="adminLoginForm">
+                <h2>Login Admin</h2>
+                <p class="auth-tabs">
+                    <span class="tab-btn" onclick="switchTab('login')">Pembeli</span>
+                    <span class="tab-btn active" onclick="switchTab('admin')">Admin</span>
+                </p>
+
+                <form onsubmit="handleAdminLogin(event)">
+                    <div class="form-group">
+                        <label>Username Admin</label>
+                        <input type="text" id="admin-username" placeholder="Masukkan username admin" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="admin-password" placeholder="Masukkan password" required>
+                    </div>
+
+                    <div id="admin-error" class="error-message"></div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Login Admin</button>
+                </form>
+
+            </div>
+
+            <!-- SIGNUP TAB -->
+            <div class="auth-form hidden" id="signupForm">
+                <h2>Daftar Akun</h2>
+
+                <form onsubmit="handleSignup(event)">
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" id="signup-name" placeholder="Masukkan nama lengkap" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="signup-email" placeholder="Masukkan email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" id="signup-username" placeholder="Masukkan username" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="signup-password" placeholder="Masukkan password (minimal 6 karakter)" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Konfirmasi Password</label>
+                        <input type="password" id="signup-confirm" placeholder="Konfirmasi password" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nomor HP</label>
+                        <input type="tel" id="signup-phone" placeholder="08xxxxxxxxxx" required>
+                    </div>
+
+                    <div id="signup-error" class="error-message"></div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Daftar</button>
+                </form>
+
+                <p style="text-align: center; margin-top: 15px; color: #7f8c8d;">
+                    Sudah punya akun? <a href="#" onclick="switchTab('login')">Login di sini</a>
+                </p>
+            </div>
+
+            <button class="modal-close" onclick="closeAuthModal()">×</button>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <!-- HERO CAROUSEL (KIRI) -->
+        <div class="hero-carousel">
+            <div class="carousel-container" id="carouselContainer">
+                <!-- Gambar akan ditampilkan di sini -->
+            </div>
+            
+            <!-- Carousel Controls -->
+            <div class="carousel-controls">
+                <button class="carousel-btn prev" onclick="prevSlide()">❮</button>
+                <button class="carousel-btn next" onclick="nextSlide()">❯</button>
+            </div>
+
+            <!-- Carousel Indicators -->
+            <div class="carousel-indicators" id="carouselIndicators">
+                <!-- Dots akan ditampilkan di sini -->
+            </div>
+        </div>
+
+        <!-- HERO CONTENT (KANAN) -->
+        <div class="hero-content">
+            <h1>Selamat Datang di 3Grecep Store</h1>
+            <p>Makanan dan Snack Berkualitas Tinggi dan sehat</p>
+            <a href="products.html" class="btn btn-primary">Belanja Sekarang</a>
+        </div>
+    </section>
+
+    <!-- PRODUK TERBARU -->
+    <section class="featured-products">
+        <h2>Produk Pilihan</h2>
+        <div id="featured-items" class="products-grid">
+            <!-- Produk akan ditampilkan di sini -->
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Tentang Kami</h4>
+                <p>Toko online terpercaya menjual makanan dan snack berkualitas</p>
+            </div>
+            <div class="footer-section">
+                <h4>Kontak</h4>
+                <p>📞 <a href="https://wa.me/6282338516014" target="_blank">0823-3851-6014</a></p>
+                <p>📧 info@3grecep.com</p>
+            </div>
+            <div class="footer-section">
+                <h4>Ikuti Kami</h4>
+                <p>
+                    <a href="https://instagram.com/3gmomskitchen" target="_blank">📱 Instagram</a> |
+                    <a href="https://facebook.com/3grecep" target="_blank">📘 Facebook</a>
+                </p>
+            </div>
+        </div>
+        <p class="footer-bottom">&copy; 2026 3Grecep Store. Semua hak dilindungi.</p>
+    </footer>
+
+    <script src="main.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>
